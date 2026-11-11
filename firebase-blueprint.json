@@ -1,0 +1,195 @@
+{
+  "entities": {
+    "LivestockItem": {
+      "title": "Livestock Item",
+      "description": "Represents an individual animal or a flock in the farm.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "name": { "type": "string", "maxLength": 200 },
+        "type": { "type": "string", "maxLength": 100 },
+        "breed": { "type": "string", "maxLength": 100 },
+        "batchOrFlock": { "type": "string", "maxLength": 100 },
+        "quantity": { "type": "number" },
+        "purchaseDate": { "type": "string", "format": "date" },
+        "purchasePrice": { "type": "number" },
+        "initialWeight": { "type": "number" },
+        "currentWeight": { "type": "number" },
+        "targetWeight": { "type": "number" },
+        "age": { "type": "string", "maxLength": 50 },
+        "healthStatus": { "type": "string", "maxLength": 500 },
+        "healthCondition": { "type": "string", "enum": ["চমৎকার ও সুস্থ", "নিয়মিত পর্যবেক্ষণে", "চিকিৎসা বা যত্ন চলছে"] },
+        "status": { "type": "string", "enum": ["খামারে পালনরত", "বিক্রির জন্য প্রস্তুত", "বিক্রিত (Sold)"] },
+        "isForSale": { "type": "boolean" },
+        "sellingPrice": { "type": "number" },
+        "ownerId": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$" }
+      },
+      "required": ["id", "name", "type", "ownerId"]
+    },
+    "FeedLog": {
+      "title": "Feed Log",
+      "description": "A record of feeding activity for an animal.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "animalId": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "animalName": { "type": "string", "maxLength": 200 },
+        "date": { "type": "string", "format": "date" },
+        "timeSlot": { "type": "string", "enum": ["সকাল", "দুপুর", "বিকাল/রাত"] },
+        "feedType": { "type": "string", "maxLength": 200 },
+        "amountKg": { "type": "number" },
+        "costTaka": { "type": "number" },
+        "employeeName": { "type": "string", "maxLength": 100 },
+        "ownerId": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$" }
+      },
+      "required": ["id", "animalId", "date", "ownerId"]
+    },
+    "HealthLog": {
+      "title": "Health Log",
+      "description": "Medical and health monitoring records for an animal.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "animalId": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "animalName": { "type": "string", "maxLength": 200 },
+        "date": { "type": "string", "format": "date" },
+        "temperature": { "type": "string", "maxLength": 20 },
+        "weightKg": { "type": "number" },
+        "appetite": { "type": "string", "enum": ["স্বাভাবিক", "কম", "একেবারে নাই"] },
+        "vaccinationName": { "type": "string", "maxLength": 200 },
+        "vaccinationStatus": { "type": "string", "enum": ["সম্পন্ন", "প্রয়োজন"] },
+        "status": { "type": "string", "enum": ["Checked", "Action Required"] },
+        "inspectorName": { "type": "string", "maxLength": 100 },
+        "ownerId": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$" }
+      },
+      "required": ["id", "animalId", "date", "ownerId"]
+    },
+    "FeedInventoryItem": {
+      "title": "Feed Inventory Item",
+      "description": "Stock levels for various feed types.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "name": { "type": "string", "maxLength": 200 },
+        "currentStockKg": { "type": "number" },
+        "minThresholdKg": { "type": "number" },
+        "unitPrice": { "type": "number" },
+        "lastUpdated": { "type": "string", "format": "date" },
+        "ownerId": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$" }
+      },
+      "required": ["id", "name", "ownerId"]
+    },
+    "DailyProductionRecord": {
+      "title": "Daily Production Record",
+      "description": "Records of farm output like milk, eggs, etc.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "date": { "type": "string", "format": "date" },
+        "type": { "type": "string", "enum": ["milk", "eggs", "fish", "meat", "feed", "cash_in", "cash_out"] },
+        "title": { "type": "string", "maxLength": 200 },
+        "amount": { "type": "number" },
+        "unit": { "type": "string", "maxLength": 50 },
+        "takaAmount": { "type": "number" },
+        "recordedBy": { "type": "string", "maxLength": 100 },
+        "ownerId": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$" }
+      },
+      "required": ["id", "date", "type", "ownerId"]
+    },
+    "InstitutionProfile": {
+      "title": "Institution Profile",
+      "description": "Farm identification and configuration.",
+      "type": "object",
+      "properties": {
+        "ownerId": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "name": { "type": "string", "maxLength": 200 },
+        "tagline": { "type": "string", "maxLength": 500 },
+        "proprietor": { "type": "string", "maxLength": 200 },
+        "phone": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 200 },
+        "location": { "type": "string", "maxLength": 500 },
+        "description": { "type": "string", "maxLength": 2000 }
+      },
+      "required": ["ownerId", "name"]
+    },
+    "FarmObject": {
+      "title": "Farm Object",
+      "description": "3D objects on the farm map.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "type": { "type": "string", "maxLength": 50 },
+        "position": { "type": "object" },
+        "rotation": { "type": "number" },
+        "scale": { "type": "number" },
+        "ownerId": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$" }
+      },
+      "required": ["id", "type", "ownerId"]
+    },
+    "VoicePhraseMapping": {
+      "title": "Voice Phrase Mapping",
+      "description": "Custom voice command mappings.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "phrase": { "type": "string", "maxLength": 500 },
+        "responseText": { "type": "string", "maxLength": 1000 },
+        "isActive": { "type": "boolean" },
+        "ownerId": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$" }
+      },
+      "required": ["id", "phrase", "ownerId"]
+    },
+    "PurchaseOrder": {
+      "title": "Purchase Order",
+      "description": "Orders for supplies.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "date": { "type": "string", "format": "date" },
+        "supplierName": { "type": "string", "maxLength": 200 },
+        "totalAmount": { "type": "number" },
+        "status": { "type": "string", "enum": ["Pending", "Approved", "Sent", "Received", "Cancelled"] },
+        "ownerId": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$" }
+      },
+      "required": ["id", "supplierName", "ownerId"]
+    }
+  },
+  "firestore": {
+    "livestock": {
+      "schema": "LivestockItem",
+      "description": "Collection of all animals."
+    },
+    "feed_logs": {
+      "schema": "FeedLog",
+      "description": "Collection of feeding records."
+    },
+    "health_logs": {
+      "schema": "HealthLog",
+      "description": "Collection of health and medical records."
+    },
+    "feed_inventory": {
+      "schema": "FeedInventoryItem",
+      "description": "Collection of feed stock items."
+    },
+    "production_records": {
+      "schema": "DailyProductionRecord",
+      "description": "Collection of daily production and cash flow records."
+    },
+    "institution_profiles": {
+      "schema": "InstitutionProfile",
+      "description": "Profiles for each farm/user."
+    },
+    "farm_objects": {
+      "schema": "FarmObject",
+      "description": "3D farm objects."
+    },
+    "voice_phrases": {
+      "schema": "VoicePhraseMapping",
+      "description": "Voice command mappings."
+    },
+    "purchase_orders": {
+      "schema": "PurchaseOrder",
+      "description": "Purchase orders for inventory."
+    }
+  }
+}

@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Hind Siliguri', 'Plus Jakarta Sans', sans-serif;
+  background-color: #ffffff;
+  color: #0f172a;
+  overflow-x: hidden;
+  overscroll-behavior: none;
+}
+
+.national-header-ribbon {
+  background: linear-gradient(90deg, #15803d 0%, #0d9488 25%, #2563eb 50%, #9333ea 75%, #db2777 100%);
+  height: 5px;
+  width: 100%;
+}
+
+.jamdani-border {
+  background-image: repeating-linear-gradient(45deg, #10b981 0, #10b981 2px, transparent 0, transparent 8px);
+  height: 3px;
+  opacity: 0.35;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.dark .glass-card {
+  background: rgba(15, 23, 42, 0.94);
+  border: 1px solid rgba(51, 65, 85, 0.85);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Hide scrollbar for clean horizontal POI list */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 1cm;
+  }
+  .no-print, nav, button, aside, footer, header {
+    display: none !important;
+  }
+  .print-view {
+    display: block !important;
+    width: 100% !important;
+    color: black !important;
+    background: white !important;
+  }
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    table-layout: fixed !important;
+    font-size: 10pt !important;
+  }
+  th, td {
+    border: 1px solid #000 !important;
+    padding: 5px !important;
+  }
+  tr {
+    page-break-inside: avoid;
+  }
+}

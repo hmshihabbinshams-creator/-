@@ -1,0 +1,8 @@
+{
+  "name": "আর এস খামার - RS Khamar",
+  "description": "জাতীয় মানের অত্যাধুনিক থ্রিডি দেশীয় খামার ম্যানেজমেন্ট ও পাবলিক পোর্টাল",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
